@@ -4,9 +4,42 @@ Import needed packages
 import pandas as pd
 import numpy as np
 import time
+import re
 from collections import Counter
 from pyjarowinkler import distance
 import Levenshtein
+
+
+SUFFIXES = {
+    'inc', 'sezc', 'co', 'vc', 'ag', 'llc', 'inc', 'ltd', 'ltda', 'ab', 'llp', 'sa', 'lp', 'uk', 'sgr', 's', 'et al',
+    'gp', 'n a', 'hk', 'oy', 'us', 'as', 'am', 'nv', 'plc', 'p', 'na', 'usa', 'pte', 'l l c', 'l p', 'l l p',
+}
+
+
+def standardize_name(s: str):
+    """
+    Standardize names by removing/replacing special characters and strip common suffixes
+    """
+    try:
+        # Transform string to lower case, remove symbols and spaces
+        s = s.lower()
+        s = re.sub(r'[^\w]', ' ', s)
+        s = re.sub(r' +', ' ', s)
+        s = s.strip()
+        # Deal with common apostrophe abbreviations
+        s = re.sub(r'\bint\'l\b', 'international', s)
+        s = re.sub(r'\bu\.s\.\b', 'us', s)
+        # Remove up to 2 common suffixes that are words e.g. 'abc llc'
+        for _ in range(2):
+            s = re.sub(' ({})$'.format('|'.join(SUFFIXES)), '', s)
+        # Remove leading/trailing the's
+        s = re.sub(r'^the | the$', '', s)
+        # Remove extra white spaces inside string
+        s = " ".join(s.split())
+        return s
+    except Exception as E:
+        print(E)
+        return s
 
 
 def jarowinkler_sim(s, t, scaling=0.1, exact_bonus=0.8):
