@@ -116,8 +116,6 @@ class StringComparer:
             for t in self.targets:
                 if (s, t) in sims:
                     continue
-                if s[:1] != t[:1]:
-                    continue
                 if t.split()[0] not in s.split():
                     continue
                 if s == t:
@@ -134,17 +132,9 @@ class StringComparer:
                 else:
                     sims[(s, t)] = min(sim, self.slow_compare(t, s))
             count += 1
-            try:
-                if count == int(0.01 * num_sources):
-                    print('StringComparer 1% completed - {:.2f}s'.format(time.time() - start))
-                elif int(0.1 * num_sources) > 0 and count % int(0.1 * num_sources) == 0:
-                    print('StringComparer {:.0%} completed - {:.2f}s'.format(count/num_sources, time.time() - start))
-            except Exception as e:
-                print(e)
-
         if len(sims) == 0:
             return pd.DataFrame({'s': [], 't': [], 'sim': []})
-
+        print('String matching complete - {:.2f}s'.format(time.time() - start))
         # Prepare output DataFrame
         pairs_sim = pd.Series(sims).reset_index()
         pairs_sim.columns = ['s', 't', 'sim']
