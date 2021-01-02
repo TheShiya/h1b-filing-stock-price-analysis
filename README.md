@@ -1,4 +1,4 @@
-# h1b-filing-stock-price-analysis
+# Analysis of Company H-1B Filings and Stock Returns
 
 ```data scraping``` ```record linkage``` ```unsupervised learning``` ```time-series clustering``` ```feature representation``` 
 
