@@ -4,7 +4,9 @@
 
 #### Overview
 
-This projects analyzes the H-1B filings for data science and analytics jobs for S&P 500 companies. After combining disparate data sets from h1bdata.info, IEX API, and Yahoo Finance API, the time-series of H-1B filings are transformed and clustered. The project ends with a brief discussion of the clusters and the stock returns within each cluster. 
+This projects analyzes the H-1B filings for data science and analytics jobs for S&P 500 companies. After combining disparate data sets from h1bdata.info, IEX API, and Yahoo Finance API, the time-series of H-1B filings are transformed and clustered. The project ends with a brief discussion of the clusters and the stock returns within each cluster.
+
+View the full Python notebook [here](https://github.com/TheShiya/h1b-filing-stock-return-analysis/blob/main/analysis/main.ipynb).
 
 #### Content
 - analysis/main.ipynb - main notebook with data processing, algorithms, and visualizations
