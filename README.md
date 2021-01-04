@@ -14,7 +14,7 @@ View the full Python notebook [here](https://github.com/TheShiya/h1b-filing-stoc
 - analysis/tools/data.py - data scraper and API callers
 
 #### Highlights
-- Bespoke record linkage algorithm - used sophisticated algorithm that is tailored for company names
+- Bespoke record linkage algorithm - sophisticated algorithm that is tailored for company names
 - Dimensionality reduction - used polynomial regression coefficients to represent time series
 - Time-series clustering - clustered time series using regression coefficients as additional features
 
